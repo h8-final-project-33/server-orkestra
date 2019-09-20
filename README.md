@@ -153,6 +153,35 @@ Routes
                     {"message" : "Internal Server Error"}
 
                 ```
+- PATCH : /addHistory
+    - description : add image history to database
+        - body :
+            ```
+            {
+               imageID: ObjectID of Image
+            }
+            ```
+        - Headers : 
+            ```
+            {
+                token: JWT TOKEN
+            }
+
+            ```
+
+        - Response :
+            - Success :
+                Status Code : 201
+                ``` 
+                    {message: 'image has been added to history'}
+                ```
+            - Error :
+                Status Code : 500
+                ```
+                {"message" : "Internal Server Error"}
+                ```
+
+      
 
 - PATCH : /leaderboard
     - description : get leaderboard of score and limit the number
