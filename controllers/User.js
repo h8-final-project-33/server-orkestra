@@ -62,8 +62,18 @@ class ControllerUser{
 
     static getLeaderboard (req,res,next) {
         const {limit} = req.body
-        console.log(limit);
         axios.get(baseUrl+'/leaderboard', {data: {numLimit: limit}} )
+        .then(({data}) => {
+            res.json(data)
+        })
+        .catch(err=>{
+            next(err)
+        })
+    }
+
+    static addToHistory (req,res,next) {
+        const {imageID} = req.body
+        axios.patch(baseUrl+'/addHistory', {imageID, _id: req.decoded._id})
         .then(({data}) => {
             res.json(data)
         })

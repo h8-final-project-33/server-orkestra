@@ -11,6 +11,7 @@ router.get('/leaderboard', ControllerUser.getLeaderboard)
 
 router.patch('/addScore',auth.authentication, ControllerUser.addScore)
 router.patch('/addVocab',auth.authentication, ControllerUser.addFavoriteVocab)
+router.patch('/addHistory', auth.authentication, ControllerUser.addToHistory)
 
 
 module.exports = router
