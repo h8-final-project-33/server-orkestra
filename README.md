@@ -1,12 +1,13 @@
 # server-orkestra
 
+Deploy server: not yet<br>
+baseUrl: http://localhost:3000/user/
 
 # server-user
 
 Routes
 ---
-Deploy server: not yet<br>
-baseUrl: http://localhost:3000/user/
+
   
 - GET : /
     - description : get data user
@@ -147,8 +148,59 @@ baseUrl: http://localhost:3000/user/
                 ```
             - Error :
                 Status Code : 500
+
                 ```
-                {"message" : "Internal Server Error"}
+                    {"message" : "Internal Server Error"}
+
                 ```
 
-             
+- PATCH : /leaderboard
+    - description : get leaderboard of score and limit the number
+        - body :
+            ```
+            {
+               limit: Number
+            }
+            ```
+        - Headers : -
+
+        - Response :
+            - Success :
+                Status Code : 201
+                ``` 
+                [
+                    {
+                        "score": 46,
+                        "vocabs": [
+                            "suicidial",
+                            "purify",
+                            "enlightment"
+                        ],
+                        "_id": "5d83810876d5eb45a68ff158",
+                        "username": "mromiari",
+                        "email": "mromiari@gmail.com",
+                        "password": "$2a$10$hwZ8pgbXIE7ynrIb4ClQ0uKinpm2AmIrxWWpb3JS2NsHPSQnSaju6",
+                        "avatar": "",
+                        "__v": 0
+                    },
+                    {
+                        "score": 0,
+                        "vocabs": [
+                            ""
+                        ],
+                        "_id": "5d837fa3f6dc0c4546f5b1a3",
+                        "username": "mromiario",
+                        "email": "mromiario@gmail.com",
+                        "password": "$2a$10$grC3I.0wOBc4Yw3WSSZQjO9zRagbwEWsSsYwQeCe2CbJgMteEpwPG",
+                        "avatar": "",
+                        "__v": 0
+                    }
+                 ]
+                ```
+            - Error :
+                Status Code : 500
+
+                ```
+                    {"message" : "Internal Server Error"}
+
+                ```

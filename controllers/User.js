@@ -59,6 +59,18 @@ class ControllerUser{
             next(err)
         })
     }
+
+    static getLeaderboard (req,res,next) {
+        const {limit} = req.body
+        console.log(limit);
+        axios.get(baseUrl+'/leaderboard', {data: {numLimit: limit}} )
+        .then(({data}) => {
+            res.json(data)
+        })
+        .catch(err=>{
+            next(err)
+        })
+    }
 }
 
 module.exports = ControllerUser
