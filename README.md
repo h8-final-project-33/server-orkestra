@@ -79,7 +79,7 @@ Routes
         - Headers : -
         - Response :
             - Success :
-                Status Code : 201
+                Status Code : 200
                 ``` 
                 {
                     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgzODEwODc2ZDVlYjQ1YTY4ZmYxNTgiLCJ1c2VybmFtZSI6Im1yb21pYXJpIiwiZW1haWwiOiJtcm9taWFyaUBnbWFpbC5jb20iLCJpYXQiOjE1Njg5MDAyNjl9.6AsPbdCFBEJgpyb9CtW6O_XZwNkxZmBrOiuzJtKNpNk"
@@ -115,7 +115,7 @@ Routes
 
         - Response :
             - Success :
-                Status Code : 201
+                Status Code : 200
                 ``` 
                     {message: 'score has been added'}
                 ```
@@ -142,7 +142,7 @@ Routes
 
         - Response :
             - Success :
-                Status Code : 201
+                Status Code : 200
                 ``` 
                     {message: 'vocab has been added to favorite'}
                 ```
@@ -171,7 +171,7 @@ Routes
 
         - Response :
             - Success :
-                Status Code : 201
+                Status Code : 200
                 ``` 
                     {message: 'image has been added to history'}
                 ```
@@ -195,7 +195,7 @@ Routes
 
         - Response :
             - Success :
-                Status Code : 201
+                Status Code : 200
                 ``` 
                 [
                     {
@@ -225,6 +225,36 @@ Routes
                         "__v": 0
                     }
                  ]
+                ```
+            - Error :
+                Status Code : 500
+
+                ```
+                    {"message" : "Internal Server Error"}
+
+                ```
+- PATCH : /editProfile
+    - description : edit profile
+        - body :
+            ```
+            {
+               username: String,
+               email: String,
+               password: String,
+               avatar: String,
+               birthday: Date (YYY/MM/DD)
+               gender: String
+            }
+            ```
+        - Headers : JWT TOKEN
+
+        - Response :
+            - Success :
+                Status Code : 200
+                ``` 
+                    {
+                        "message": "data has been updated"
+                    }
                 ```
             - Error :
                 Status Code : 500

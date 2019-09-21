@@ -3,8 +3,8 @@ const jwt = require('../helpers/jwt')
 const baseUrl = 'http://localhost:3001/user'
 class ControllerUser{
     static regsiter (req,res,next) {
-        let {username,email,password, avatar} = req.body
-        axios.post(baseUrl+'/register',{username,email,password, avatar})
+        let {username,email,password, avatar, birthday, gender } = req.body
+        axios.post(baseUrl+'/register',{username,email,password, avatar, birthday : new Date(birthday), gender})
         .then(({data}) => {
             res.status(201).json(data)
         })
@@ -76,6 +76,24 @@ class ControllerUser{
         axios.patch(baseUrl+'/addHistory', {imageID, _id: req.decoded._id})
         .then(({data}) => {
             res.json(data)
+        })
+        .catch(err=>{
+            next(err)
+        })
+    }
+
+    static editProfile (req,res,next) {
+        const { username, email, password, avatar, birthday, gender } = req.body
+        let bodyUpdate = {}
+        if (username) bodyUpdate.username = username
+        if (email) bodyUpdate.email = email
+        if (password) bodyUpdate.password = password
+        if (avatar) bodyUpdate.avatar = avatar
+        if (birthday) bodyUpdate.birthday = birthday
+        if (gender) bodyUpdate.gender = gender
+        axios.patch(baseUrl+'/editProfile', {bodyUpdate, _id: req.decoded._id})
+        .then(({data}) => {
+            res.json({message: 'data has been updated'})
         })
         .catch(err=>{
             next(err)
