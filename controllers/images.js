@@ -37,8 +37,8 @@ class ImageController {
     }
 
     static create (req, res, next) {
-        const { image, description } = req.body
-        axios.post(url, { image, description })
+        const { image} = req.body
+        axios.post(url, { image})
         .then(({ data }) => {
             res.status(201).json({ data })
             return axios.get(url)
