@@ -1,6 +1,6 @@
 const axios = require('axios')
 const jwt = require('../helpers/jwt')
-const baseUrl = 'http://localhost:3001/user'
+const baseUrl = 'http://35.240.188.155/user/'
 class ControllerUser{
     static regsiter (req,res,next) {
         let {username,email,password, avatar, birthday, gender } = req.body
