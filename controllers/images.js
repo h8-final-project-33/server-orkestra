@@ -9,7 +9,7 @@ client.on('connect', function() {
 });
 
 const axios     = require('axios')
-const url       = `http://localhost:3001/images/`
+const url       = `http://35.247.145.241/images/`
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
