@@ -1,5 +1,13 @@
 const redis     = require('redis')
-const client    = redis.createClient()
+const client    = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST, {no_ready_check: true});
+client.auth(process.env.REDIS_PASSWORD, function (err) {
+    if (err) throw err;
+});
+
+client.on('connect', function() {
+    console.log('Connected to Redis');
+});
+
 const axios     = require('axios')
 const url       = `http://localhost:3001/images/`
 
