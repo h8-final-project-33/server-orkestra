@@ -20,6 +20,17 @@ class ImageController {
         })
     }
 
+    static findMine (req, res, next) { 
+        console.log('iniii',req.decoded._id);
+        axios.get(url+'find/myImage', { data:{owner: req.decoded._id}})
+        .then(({ data }) => {
+            res.status(200).json({ data })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     static findOne (req, res, next) {
         axios.get(`${url}${req.params.id}`)
         .then(({ data }) => {
