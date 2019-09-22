@@ -11,19 +11,41 @@ client.on('connect', function() {
 const axios     = require('axios')
 const url       = `http://localhost:3001/images/`
 
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
 class ImageController {
     static findAll (req, res, next) { 
         client.get('images', function (err, reply) {
+            const {limit} = req.body
             if (!reply) {
                 axios.get(url)
                 .then(({ data }) => {
-                    res.status(200).json({ data })
-                    client.set('images', JSON.stringify({ data }, null, 2), 'EX', 60)
+                    let randomData = shuffle(data)
+                    res.status(200).json(randomData.slice(0,Number(limit)))
+                    client.set('images', JSON.stringify(data, null, 2), 'EX', 60)
                 })
                 .catch(next)
             }
             else {
-                res.send(JSON.parse(reply))
+                let randomData = shuffle(JSON.parse(reply))
+                res.send(randomData.slice(0,Number(limit)))
             }
         })
     }
@@ -32,7 +54,7 @@ class ImageController {
         console.log('iniii',req.decoded._id);
         axios.get(url+'find/myImage', { data:{owner: req.decoded._id}})
         .then(({ data }) => {
-            res.status(200).json({ data })
+            res.status(200).json(data)
         })
         .catch(err => {
             console.log(err);
@@ -42,7 +64,7 @@ class ImageController {
     static findOne (req, res, next) {
         axios.get(`${url}${req.params.id}`)
         .then(({ data }) => {
-            res.status(200).json({ data })
+            res.status(200).json(data)
         })
         .catch(next)
     }
@@ -51,11 +73,11 @@ class ImageController {
         const {image} = req.body
         axios.post(url, { image, _id: req.decoded._id})
         .then(({ data }) => {
-            res.status(201).json({ data })
+            res.status(201).json(data)
             return axios.get(url)
         })
         .then(({ data }) => {
-            client.set('images', JSON.stringify({ data }, null, 2), 'EX', 60) 
+            client.set('images', JSON.stringify(data, null, 2), 'EX', 60) 
         })
         .catch(next)
     }
@@ -63,11 +85,11 @@ class ImageController {
     static delete (req, res, next) {
         axios.delete(`${url}${req.params.id}`)
         .then(({ data }) => {
-            res.status(200).json({ data })
+            res.status(200).json( data )
             return axios.get(url)
         })
         .then(({ data }) => {
-            client.set('images', JSON.stringify({ data }, null, 2), 'EX', 60) 
+            client.set('images', JSON.stringify(data, null, 2), 'EX', 60) 
         })
         .catch(next)
     }
