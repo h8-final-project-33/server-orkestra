@@ -85,13 +85,13 @@ class ImageController {
     static delete (req, res, next) {
         axios.delete(`${url}${req.params.id}`)
         .then(({ data }) => {
-            res.status(200).json( data )
+            res.status(200).json( {data} )
             return axios.get(url)
         })
         .then(({ data }) => {
             client.set('images', JSON.stringify(data, null, 2), 'EX', 60) 
         })
-        .catch(next)
+        .catch(err=> console.log(err))
     }
 
 }

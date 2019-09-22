@@ -1,6 +1,6 @@
 const jwt = require('../helpers/jwt')
 const axios = require('axios')
-const url   = `http://localhost:3001/images/`
+const url   = `http://35.240.151.208/images/`
 function authentication(req,res,next){
     try {
         let decoded = jwt.verifyToken(req.headers.token);
@@ -13,8 +13,9 @@ function authentication(req,res,next){
 
 
 function authorization(req,res,next){
+  console.log(`${url}${req.params.id}`);
     axios.get(`${url}${req.params.id}`)
-    .then(({ data }) => {
+    .then(({ data} ) => {
         if (data) {
           if (data.owner == req.decoded._id) {
             next()
@@ -27,7 +28,9 @@ function authorization(req,res,next){
           res.status(404).json({message: 'not found'})
         }
     })
-    .catch(err =>  next(err))
+    .catch(err => 
+       {console.log(err)} 
+      )
     
     
 
