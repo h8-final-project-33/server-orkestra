@@ -1,7 +1,7 @@
 # server-orkestra
 
 Deploy server: not yet<br>
-baseUrl: http://localhost:3000/
+**baseUrl: http://35.240.151.208/** 
 
 # server-user
 
