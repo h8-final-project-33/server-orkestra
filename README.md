@@ -1,7 +1,7 @@
 # server-orkestra
 
 Deploy server: not yet<br>
-baseUrl: http://localhost:3000/user/
+baseUrl: http://localhost:3000/
 
 # server-user
 
@@ -9,7 +9,7 @@ Routes
 ---
 
   
-- GET : /
+- **GET : /user**
     - description : get data user
         - body : -
         - Headers : 
@@ -35,7 +35,7 @@ Routes
                         "__v": 0
                     }
                 ```
-- POST : /register
+- **POST : /user/register**
     - description : REGISTER USER
         - body :
             ```
@@ -67,7 +67,7 @@ Routes
                 ```
                 {"message" : "Internal Server Error"}
                 ```
-- POST : /login
+- **POST : /user/login**
     - description : LOGIN USER
         - body :
             ```
@@ -97,7 +97,7 @@ Routes
                 {"message" : "Internal Server Error"}
                 ```
 
-- PATCH : /addScore
+- **PATCH : /user/addScore**
     - description : add current score to total score in database
         - body :
             ```
@@ -124,7 +124,7 @@ Routes
                 ```
                 {"message" : "Internal Server Error"}
                 ```
-- PATCH : /addVocab
+- **PATCH : /user/addVocab**
     - description : add favorite word to database
         - body :
             ```
@@ -153,7 +153,7 @@ Routes
                     {"message" : "Internal Server Error"}
 
                 ```
-- PATCH : /addHistory
+- **PATCH : /user/addHistory**
     - description : add image history to database
         - body :
             ```
@@ -183,7 +183,7 @@ Routes
 
       
 
-- PATCH : /leaderboard
+- **PATCH : /user/leaderboard**
     - description : get leaderboard of score and limit the number
         - body :
             ```
@@ -233,7 +233,7 @@ Routes
                     {"message" : "Internal Server Error"}
 
                 ```
-- PATCH : /editProfile
+- **PATCH : /user/editProfile**
     - description : edit profile
         - body :
             ```
