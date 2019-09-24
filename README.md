@@ -1,6 +1,5 @@
 # server-orkestra
 
-Deploy server: not yet<br>
 **baseUrl: http://35.240.151.208/** 
 
 # server-user
@@ -129,7 +128,7 @@ Routes
         - body :
             ```
             {
-               addVocab: String
+               vocab: String
             }
             ```
         - Headers : 
@@ -272,8 +271,8 @@ Routes
 - Method
     - **GET**
 - Route
-    - `/images`
-- Body
+    - `/images/all/:limit`
+- Params
     - limit: Number (Number of how many photos wanted)    
 - Response
     - `code: 200`
