@@ -1,6 +1,6 @@
 const axios = require('axios')
 const jwt = require('../helpers/jwt')
-const baseUrl = 'http://35.240.188.155/user/'
+const baseUrl = 'http://35.240.188.155/user'
 class ControllerUser{
     static regsiter (req,res,next) {
         let {username,email,password, avatar, birthday, gender } = req.body
@@ -72,8 +72,8 @@ class ControllerUser{
     }
 
     static addToHistory (req,res,next) {
-        const {imageID} = req.body
-        axios.patch(baseUrl+'/addHistory', {imageID, _id: req.decoded._id})
+        const {imageID, url} = req.body
+        axios.patch(baseUrl+'/addHistory', {imageID:{url, imageID},  _id: req.decoded._id})
         .then(({data}) => {
             res.json(data)
         })
@@ -91,10 +91,12 @@ class ControllerUser{
         if (avatar) bodyUpdate.avatar = avatar
         if (birthday) bodyUpdate.birthday = birthday
         if (gender) bodyUpdate.gender = gender
-        axios.patch(baseUrl+'/editProfile', {bodyUpdate, _id: req.decoded._id})
+	console.log('masuk sini')
+        axios.patch(baseUrl+'/editProfile', {...req.body, _id:req.decoded._id})
         .then(({data}) => {
-            res.json({message: 'data has been updated'})
+            return axios.get(baseUrl, ({data: {_id:req.decoded._id}}))
         })
+	.then(({data}) => res.json(data))
         .catch(err=>{
             next(err)
         })
