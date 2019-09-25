@@ -9,7 +9,7 @@ client.on('connect', function() {
 });
 
 const axios     = require('axios')
-const url       = `http://35.247.145.241/images/`
+const url       = `http://35.198.233.49/images/`
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -33,7 +33,7 @@ function shuffle(array) {
 class ImageController {
     static findAll (req, res, next) { 
         client.get('images', function (err, reply) {
-            const {limit} = req.body
+            const {limit} = req.params
             if (!reply) {
                 axios.get(url)
                 .then(({ data }) => {
