@@ -1,0 +1,29 @@
+{
+  "name": "server-orkestra",
+  "version": "1.0.0",
+  "description": "Deploy server: not yet<br> baseUrl: http://localhost:3000/",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h8-final-project-33/server-orkestra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/h8-final-project-33/server-orkestra/issues"
+  },
+  "homepage": "https://github.com/h8-final-project-33/server-orkestra#readme"
+}
